@@ -2,6 +2,14 @@
 
 Esta é uma aplicação web para gestão de login desenvolvida para estudos de teste de software. A aplicação consome a API de login disponível em `../api-login`.
 
+## Componentes do grupo
+
+- Amanda Ruiz
+- Dionara Paiva
+- Felipe Almeida
+- Matheus Ferreira
+- Michele Silva
+
 ## Tecnologias Utilizadas
 
 - **Frontend**: HTML, CSS, JavaScript
