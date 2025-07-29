@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Login - Gestão de Acesso</title>
+    
+    <!-- MaterializeCSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- CSS Customizado -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="blue darken-2">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo">
+                <i class="material-icons left">security</i>
+                Sistema de Login
+            </a>
+        </div>
+    </nav>
+
+    <!-- Container Principal -->
+    <div class="container">
+        <!-- Status da API -->
+        <div id="api-status" class="card-panel blue lighten-5">
+            <div class="row">
+                <div class="col s12">
+                    <i class="material-icons left">info</i>
+                    <span id="status-text">Verificando status da API...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulário de Login -->
+        <div id="login-section" class="row">
+            <div class="col s12 m8 l6 offset-m2 offset-l3">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title center-align">
+                            <i class="material-icons large blue-text">person</i>
+                            <br>Login
+                        </span>
+                        
+                        <form id="login-form">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="username" type="text" class="validate" required>
+                                    <label for="username">Usuário</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input id="password" type="password" class="validate" required>
+                                    <label for="password">Senha</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col s12 center-align">
+                                    <button class="btn waves-effect waves-light blue" type="submit">
+                                        <i class="material-icons left">login</i>
+                                        Entrar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <a href="#" id="forgot-password-link" class="blue-text">
+                                    <i class="material-icons tiny">help</i>
+                                    Esqueci minha senha
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção Esqueci Minha Senha -->
+        <div id="forgot-section" class="row" style="display: none;">
+            <div class="col s12 m8 l6 offset-m2 offset-l3">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title center-align">
+                            <i class="material-icons large orange-text">help</i>
+                            <br>Esqueci Minha Senha
+                        </span>
+                        
+                        <form id="forgot-form">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="forgot-username" type="text" class="validate" required>
+                                    <label for="forgot-username">Usuário</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col s12 center-align">
+                                    <button class="btn waves-effect waves-light orange" type="submit">
+                                        <i class="material-icons left">send</i>
+                                        Gerar Token
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <a href="#" id="back-to-login" class="blue-text">
+                                    <i class="material-icons tiny">arrow_back</i>
+                                    Voltar ao login
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção Reset de Senha -->
+        <div id="reset-section" class="row" style="display: none;">
+            <div class="col s12 m8 l6 offset-m2 offset-l3">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title center-align">
+                            <i class="material-icons large green-text">lock_reset</i>
+                            <br>Redefinir Senha
+                        </span>
+                        
+                        <form id="reset-form">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="reset-username" type="text" class="validate" required>
+                                    <label for="reset-username">Usuário</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">vpn_key</i>
+                                    <input id="reset-token" type="text" class="validate" required>
+                                    <label for="reset-token">Token</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input id="new-password" type="password" class="validate" required>
+                                    <label for="new-password">Nova Senha</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input id="confirm-password" type="password" class="validate" required>
+                                    <label for="confirm-password">Confirmar Nova Senha</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col s12 center-align">
+                                    <button class="btn waves-effect waves-light green" type="submit">
+                                        <i class="material-icons left">save</i>
+                                        Redefinir Senha
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <a href="#" id="back-to-login-reset" class="blue-text">
+                                    <i class="material-icons tiny">arrow_back</i>
+                                    Voltar ao login
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Token Gerado -->
+        <div id="token-section" class="row" style="display: none;">
+            <div class="col s12 m8 l6 offset-m2 offset-l3">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title center-align">
+                            <i class="material-icons large amber-text">vpn_key</i>
+                            <br>Token Gerado
+                        </span>
+                        
+                        <div class="row">
+                            <div class="col s12">
+                                <p class="center-align">Use este token para redefinir sua senha:</p>
+                                <div class="input-field">
+                                    <input id="generated-token" type="text" readonly class="center-align">
+                                    <label for="generated-token">Token</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <button id="copy-token" class="btn waves-effect waves-light amber">
+                                    <i class="material-icons left">content_copy</i>
+                                    Copiar Token
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <a href="#" id="go-to-reset" class="btn waves-effect waves-light green">
+                                    <i class="material-icons left">lock_reset</i>
+                                    Ir para Reset de Senha
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html> 
