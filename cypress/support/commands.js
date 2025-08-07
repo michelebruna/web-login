@@ -24,12 +24,12 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('ResetarSenha', () => {
+Cypress.Commands.add('ResetarSenha', (username, mensagemEsperada = 'Token gerado com sucesso!') => {
     cy.get('#forgot-password-link').click({ force: true })
-    cy.get('#forgot-username').click({ force: true }).type('grupo4')
+    cy.get('#forgot-username').click({ force: true }).type(username)
     cy.contains('button', 'Gerar Token').click()
 
-    cy.contains('div', 'Token gerado com sucesso!').should('be.visible')
+    cy.contains('div', mensagemEsperada).should('be.visible')
 
       
    //cy.get('#copy-token').click({ force: true })
@@ -43,3 +43,10 @@ Cypress.Commands.add('ResetarSenha', () => {
 //Cypress.Commands.add('pegarValorInput', () => {
   //  return cy.get('#generated-token').invoke('val')
   //})
+
+  Cypress.Commands.add('updatePasswordInFixture', (novaSenha, arquivo = 'credenciais.json') => {
+    cy.readFile(`cypress/fixtures/${arquivo}`).then((dados) => {
+      dados.valida.password = novaSenha
+      cy.writeFile(`cypress/fixtures/${arquivo}`, dados)
+    })
+  })
