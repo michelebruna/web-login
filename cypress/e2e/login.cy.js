@@ -29,7 +29,7 @@ describe('Login', () => {
     
   })
 
-  it.only('Usuário deve ser bloqueado após 2 tentativas inválidas', () => {
+  it('Usuário deve ser bloqueado após 2 tentativas inválidas', () => {
     for (let i = 0; i < 2; i++) {
       cy.get('#username').click({ force: true }).clear().type('grupo4')
       cy.get('#password').click({ force: true }).clear().type('senha')
