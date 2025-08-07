@@ -1,0 +1,16 @@
+{
+    "valida": {
+        "username": "grupo4",
+        "password": "123456"
+    },
+    
+    "usuarioInvalido":{
+        "username": "grupo",
+        "password": "123456"
+    },
+
+    "senhaInvalida":{
+        "username": "grupo4",
+        "password": "12345"
+    }
+}

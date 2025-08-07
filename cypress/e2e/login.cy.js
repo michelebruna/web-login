@@ -4,46 +4,63 @@ describe('Login', () => {
   })
 
   it('Login com dados válidos deve permitir a entrada no sistema', () => {
-    cy.get('#username').click({ force: true }).type('grupo4')
-    cy.get('#password').click({ force: true }).type('Senha@123')
+    cy.fixture('credenciais').then(credenciais => {
+      cy.get('#username').click({ force: true }).type(credenciais.valida.username)
+      cy.get('#password').click({ force: true }).type(credenciais.valida.password)
+    })
+
     cy.contains('button', 'Entrar').click()
 
     cy.contains('div', 'Login realizado com sucesso!').should('be.visible')
-  })
+  
+})
 
   it('Login com usuário inválido não deve permitir a entrada no sistema', () => {
-    cy.get('#username').click({ force: true }).type('grupo')
-    cy.get('#password').click({ force: true }).type('Senha@123')
+    cy.fixture('credenciais').then(credenciais => {
+      cy.get('#username').click({ force: true }).type(credenciais.usuarioInvalido.username)
+      cy.get('#password').click({ force: true }).type(credenciais.usuarioInvalido.password)
+    })
+
     cy.contains('button', 'Entrar').click()
 
     cy.get('.message').contains('Credenciais inválidas. Tentativas restantes:').should('be.visible')
     
-  })
+  
+})
 
   it('Login com senha inválida não deve permitir a entrada no sistema', () => {
-    cy.get('#username').click({ force: true }).type('grupo4')
-    cy.get('#password').click({ force: true }).type('senha')
+    cy.fixture('credenciais').then(credenciais => {
+      cy.get('#username').click({ force: true }).type(credenciais.senhaInvalida.username)
+      cy.get('#password').click({ force: true }).type(credenciais.senhaInvalida.password)
+    })
+
     cy.contains('button', 'Entrar').click()
 
     cy.get('.message').contains('Credenciais inválidas. Tentativas restantes:').should('be.visible')
+    
     
   })
 
   it('Usuário deve ser bloqueado após 2 tentativas inválidas', () => {
     for (let i = 0; i < 2; i++) {
-      cy.get('#username').click({ force: true }).clear().type('grupo4')
-      cy.get('#password').click({ force: true }).clear().type('senha')
+      cy.fixture('credenciais').then(credenciais => {
+        cy.get('#username').click({ force: true }).type(credenciais.senhaInvalida.username)
+        cy.get('#password').click({ force: true }).type(credenciais.senhaInvalida.password)
+      })
       cy.contains('button', 'Entrar').click()
 
       cy.get('.message').contains('Credenciais inválidas. Tentativas restantes:').should('be.visible')
 
     }
-    cy.get('#username').click({ force: true }).clear().type('grupo4')
-    cy.get('#password').click({ force: true }).clear().type('senha')
+    cy.fixture('credenciais').then(credenciais => {
+      cy.get('#username').click({ force: true }).clear().type(credenciais.senhaInvalida.username)
+      cy.get('#password').click({ force: true }).clear().type(credenciais.senhaInvalida.password)
+    })
+
     cy.contains('button', 'Entrar').click()
 
     cy.get('.message').contains('Usuário bloqueado após 3 tentativas. Use "Esqueci minha senha" para desbloquear.').should('be.visible')
 
 
 })
-})
+  })
