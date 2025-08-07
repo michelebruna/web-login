@@ -32,14 +32,14 @@ Cypress.Commands.add('ResetarSenha', () => {
     cy.contains('div', 'Token gerado com sucesso!').should('be.visible')
 
       
-   cy.get('#copy-token').click({ force: true })
-   cy.pegarValorInput().as('token')
-   cy.get('@token').then((token) => {
-    cy.log('Valor do token: ' + token)
-  })
+   //cy.get('#copy-token').click({ force: true })
+   //cy.pegarValorInput().as('token')
+   //cy.get('@token').then((token) => {
+    //cy.log('Valor do token: ' + token)
+  //})
    
 })
 
-Cypress.Commands.add('pegarValorInput', () => {
-    return cy.get('#generated-token').invoke('val')
-  })
+//Cypress.Commands.add('pegarValorInput', () => {
+  //  return cy.get('#generated-token').invoke('val')
+  //})
