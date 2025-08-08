@@ -6,8 +6,6 @@ Esta é uma aplicação web para gestão de login desenvolvida para estudos de t
 
 - Amanda Ruiz
 - Dionara Paiva
-- Felipe Almeida
-- Matheus Ferreira
 - Michele Silva
 
 ## Tecnologias Utilizadas
@@ -75,7 +73,7 @@ web-login/
 
 Para facilitar os testes, utilize o usuário padrão:
 - **Username**: `grupo4`
-- **Password**: `senha@1234`
+- **Password**: `Senha@123`
 
 ## Fluxo de Funcionalidades
 
